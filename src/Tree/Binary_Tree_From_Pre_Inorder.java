@@ -13,14 +13,34 @@ public class Binary_Tree_From_Pre_Inorder {
           this.right = right;
       }
   }
-//
-//    public static TreeNode buildTree(int[] postorder,int[] inorder){
-//
-//    }
-//
-//    private  TreeNode CreateTree(int[] inorder,int ilo,int ihi,int[] preorder){
-//        TreeNode nn=new TreeNode(preorder[plo]);
-//        int idx=search(inorder,ilo,ihi,preorder[plo]);
-//        int net=idx-ilo;
-//    }
+
+  private int search(int[] in,int start,int end,int item){
+        for(int i=start;i<=end;i++){
+            if(in[i]==item){
+                return i;
+            }
+        }
+        return -1;
+  }
+
+  public TreeNode Binary_Tree_From_Pre_Inorder(int[] pre,int pstart,int pend,int[] in,int instart,int inend){
+        return CreateTree(pre,pstart,pend,in,instart,inend);
+  }
+
+  private TreeNode CreateTree(int[] pre,int pstart,int pend,int[] in,int instart,int inend){
+        if(pstart>pend || instart>inend){
+            return null;
+        }
+
+        TreeNode node=new TreeNode(pre[pstart]);
+        int ind=search(in,instart,inend,pre[pstart]);
+        int elements=ind-instart;
+        node.left=CreateTree(pre,pstart+1,pstart+elements,in,instart,ind-1);
+        node.right=CreateTree(pre,pstart+elements+1,pend,in,ind+1,inend);
+        return node;
+  }
+
+  public void display(){
+
+  }
 }
