@@ -2,6 +2,8 @@ package GRAPH;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graph {
     private HashMap<Integer,HashMap<Integer,Integer>> map=new HashMap<>();
@@ -53,22 +55,64 @@ public class Graph {
         }
     }
 
-    public boolean hasPath(int src, int des, HashSet<Integer> vis){
+//    public boolean hasPath(int src, int des, HashSet<Integer> vis){
+//        if(src==des){
+//            return true;
+//        }
+//        vis.add(src);
+//        for(int nbrs:map.get(src).keySet()){
+//            if(!vis.contains(nbrs)) {
+//                boolean ans = hasPath(nbrs, des,vis);
+//                if(ans){
+//                    return ans;
+//                }
+//            }
+//        }
+//        vis.remove(src);
+//        return false;
+//    }
+
+    public void PrintAllPath(int src, int des, HashSet<Integer> vis,String ans){
         if(src==des){
-            return true;
+            System.out.println(ans+src);
+            return;
         }
         vis.add(src);
         for(int nbrs:map.get(src).keySet()){
             if(!vis.contains(nbrs)) {
-                boolean ans = hasPath(nbrs, des,vis);
-                if(ans){
-                    return ans;
-                }
+                PrintAllPath(nbrs, des,vis,ans+src+"->");
             }
         }
         vis.remove(src);
+    }
+
+    public boolean BFS(int src,int des){
+        HashSet<Integer> vis=new HashSet<>();
+        Queue<Integer> q=new LinkedList<>();
+        q.add(src);
+        while(!q.isEmpty()){
+//            remove
+            int rem=q.poll();
+//            if already visited ignores
+            if(vis.contains(rem)) {
+                continue;
+            }
+//                update visited
+                vis.add(rem);
+                if(rem==des){
+                    return true;
+                }
+//                add unvisited neighbours
+                for(int nbrs:map.get(rem).keySet()){
+                    if(!vis.contains(nbrs)){
+                        q.add(nbrs);
+                    }
+                }
+
+        }
         return false;
     }
+
     public static void main(String[] args) {
         Graph g=new Graph(7);
         g.addEdge(1,4,6);
@@ -82,7 +126,9 @@ public class Graph {
 //        g.display();
 //        g.removeVertex(4);
 //        g.display();
-        System.out.println(g.hasPath(1,6,new HashSet<Integer>()));
+//        System.out.println(g.hasPath(1,6,new HashSet<Integer>()));
+//        g.PrintAllPath(1,6,new HashSet<Integer>(),"");
+        System.out.println((g.BFS(1,6)));
     }
 }
 
