@@ -137,6 +137,64 @@ public class Graph {
         return false;
     }
 
+    public void BFT() {
+        HashSet<Integer> vis = new HashSet<>();
+        Queue<Integer> q = new LinkedList<>();
+        for (int src : map.keySet()) {
+            if(vis.contains(src)){
+                continue;
+            }
+            q.add(src);
+            while (!q.isEmpty()) {
+//      1.      remove
+                int rem = q.poll();
+//      2.      if already visited ignores
+                if (vis.contains(rem)) {
+                    continue;
+                }
+//      3.          update visited
+                vis.add(rem);
+//      4.      Self Work
+                System.out.print(rem + " ");
+//      5.          add unvisited neighbours
+                for (int nbrs : map.get(rem).keySet()) {
+                    if (!vis.contains(nbrs)) {
+                        q.add(nbrs);
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void DFT(){
+        HashSet<Integer> vis=new HashSet<>();
+        Stack<Integer> st=new Stack<>();
+        for(int src:map.keySet()){
+            if(vis.contains(src)){
+                continue;
+            }
+        st.push(src);
+        while(!st.isEmpty()) {
+//      1.      remove
+            int rem = st.pop();
+//      2.      if already visited ignores
+            if (vis.contains(rem)) {
+                continue;
+            }
+//      3.          update visited
+            vis.add(rem);
+            System.out.print(rem+" ");
+//      4.          add unvisited neighbours
+            for (int nbrs : map.get(rem).keySet()) {
+                if (!vis.contains(nbrs)) {
+                    st.push(nbrs);
+                }
+            }
+        }
+        }
+    }
+
     public static void main(String[] args) {
         Graph g=new Graph(7);
         g.addEdge(1,4,6);
@@ -153,7 +211,10 @@ public class Graph {
 //        System.out.println(g.hasPath(1,6,new HashSet<Integer>()));
 //        g.PrintAllPath(1,6,new HashSet<Integer>(),"");
 //        System.out.println((g.BFS(1,6)));
-        System.out.println((g.BFS(1,6)));
+//        System.out.println((g.BFS(1,6)));
+        g.BFT();
+        System.out.println();
+        g.DFT();
     }
 }
 
