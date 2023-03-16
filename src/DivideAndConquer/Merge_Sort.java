@@ -2,7 +2,7 @@ package DivideAndConquer;
 
 public class Merge_Sort {
     public static void main(String[] args) {
-        int[] arr={2,3,1,4,5,8,-11};
+        int[] arr={5,1,1,2,0,0};
         int[] ans=merge_sort(arr,0,arr.length-1);
         for(int ele:ans){
             System.out.print(ele+" ");
@@ -31,7 +31,7 @@ public class Merge_Sort {
                 arr[k]=arr1[i];
                 i++;
             }
-            else if(arr1[i]>arr2[j]){
+            else {
                 arr[k]=arr2[j];
                 j++;
             }

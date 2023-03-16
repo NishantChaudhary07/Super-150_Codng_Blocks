@@ -1,66 +1,59 @@
-package Recursion;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class Practice {
-    public static void main(String[] args) {
-        int n=4;
-        boolean[][] board=new boolean[n][n];
-        printPath(board,0,n);
-    }
-    public static void display(boolean[][] board){
-        for(int i=0;i<board.length;i++){
-            for(int j=0;j< board.length;j++){
-                System.out.print(board[i][j]+" ");
-            }
-            System.out.println();
-        }
-    }
-    public static boolean isPossible(boolean[][] board,int row,int col) {
-        int r = row;
-        int c = col;
-        while (r >= 0) {
-            if (board[r][c] == true) {
-                return false;
-            }
-            r--;
-        }
-        r=row;
-        while(r>=0 && c>=0){
-            if(board[r][c]==true){
-                return false;
-            }
-            r--;
-            c--;
-        }
-        r=row;c=col;
-        while(r>=0 && c< board.length){
-            if(board[r][c]==true){
-                return false;
-            }
-            r--;
-            c++;
-        }
-        return true;
-    }
-
-    public static  void printPath(boolean[][] board,int row,int queens){
-        if(queens==0){
-            display(board);
-            System.out.println();
-            return;
-        }
-        if(row==board.length){
-            return;
-        }
-
-        for(int col=0;col<board.length;col++){
-            if(isPossible(board,row,col)){
-                board[row][col]=true;
-                printPath(board,row+1,queens-1);
-                board[row][col]=false;
-            }
-        }
-    }
-}
+///******************************************************************************
+//
+// Online Java Compiler.
+// Code, Compile, Run and Debug java program online.
+// Write your code in this editor and press "Run" button to execute it.
+//
+// *******************************************************************************/
+//
+//class Practice {
+//    private int[] merge(int[] A1,int[] A2){
+//        int l1=A1.length;
+//        int l2=A2.length;
+//        int[] res=new int[l1+l2];
+//        int i=0,j=0,k=0;
+//        while(i<l1 && j<l2){
+//            if(A1[i]<A2[j]){
+//                res[k]=A1[i];
+//                i++;
+//            }
+//            else{
+//                res[k]=A2[j];
+//                j++;
+//            }
+//            k++;
+//        }
+//        while(i<l1){
+//            res[k]=A1[i];
+//            i++;
+//            k++;
+//        }
+//        while(j<l2){
+//            res[k]=A2[j];
+//            j++;
+//            k++;
+//        }
+//        return res;
+//    }
+//
+//    private int[] mergeSort(int[] nums,int start,int end){
+//        if(start==end){
+//            int[] A=new int[1];
+//            A[0]=nums[start];
+//            return A;
+//        }
+//        int mid=(start+end)/2;
+//        int[] left=mergeSort(nums,start,mid);
+//        int[] right=mergeSort(nums,mid+1,end);
+//        return merge(left,right);
+//    }
+//    public static void main(String[] args){
+//        Practice obj=new Practice();
+//        int[] nums={5,1,1,2,0,0};
+//        int[] ans=obj.mergeSort(nums,0,nums.length-1);
+////        for(int ele:ans){
+////            System.out.print(ele+" ");
+////        }
+//        System.out.println(Math.ceil(6/3));
+//    }
+//}

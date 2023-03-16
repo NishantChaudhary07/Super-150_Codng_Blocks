@@ -2,15 +2,16 @@ import java.util.*;
 
 public class Prac2 {
     public static void main(String[] args) {
-        Stack<Integer> st=new Stack<>();
-        st.push(10);
-        st.push(20);
-        st.push(30);
-        st.push(40);
-        st.push(50);
-        System.out.println(st);
-        reverse(st);
-        System.out.println(st);
+//        Stack<Integer> st=new Stack<>();
+//        st.push(10);
+//        st.push(20);
+//        st.push(30);
+//        st.push(40);
+//        st.push(50);
+//        System.out.println(st);
+//        reverse(st);
+//        System.out.println(st);
+        System.out.println(Math.ceil((double)3/6));
     }
 
     private static void reverse(Stack<Integer> st){
