@@ -1,9 +1,6 @@
 package GRAPH;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Graph {
     private HashMap<Integer,HashMap<Integer,Integer>> map=new HashMap<>();
@@ -91,23 +88,50 @@ public class Graph {
         Queue<Integer> q=new LinkedList<>();
         q.add(src);
         while(!q.isEmpty()){
-//            remove
+//      1.      remove
             int rem=q.poll();
-//            if already visited ignores
+//      2.      if already visited ignores
             if(vis.contains(rem)) {
                 continue;
             }
-//                update visited
+//      3.          update visited
                 vis.add(rem);
                 if(rem==des){
                     return true;
                 }
-//                add unvisited neighbours
+//      4.          add unvisited neighbours
                 for(int nbrs:map.get(rem).keySet()){
                     if(!vis.contains(nbrs)){
                         q.add(nbrs);
                     }
                 }
+
+        }
+        return false;
+    }
+
+    public boolean DFS(int src,int des){
+        HashSet<Integer> vis=new HashSet<>();
+        Stack<Integer> st=new Stack<>();
+        st.push(src);
+        while(!st.isEmpty()){
+//      1.      remove
+            int rem=st.pop();
+//      2.      if already visited ignores
+            if(vis.contains(rem)) {
+                continue;
+            }
+//      3.          update visited
+            vis.add(rem);
+            if(rem==des){
+                return true;
+            }
+//      4.          add unvisited neighbours
+            for(int nbrs:map.get(rem).keySet()){
+                if(!vis.contains(nbrs)){
+                    st.push(nbrs);
+                }
+            }
 
         }
         return false;
@@ -128,6 +152,7 @@ public class Graph {
 //        g.display();
 //        System.out.println(g.hasPath(1,6,new HashSet<Integer>()));
 //        g.PrintAllPath(1,6,new HashSet<Integer>(),"");
+//        System.out.println((g.BFS(1,6)));
         System.out.println((g.BFS(1,6)));
     }
 }
