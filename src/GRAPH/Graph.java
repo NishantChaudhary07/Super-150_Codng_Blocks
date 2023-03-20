@@ -52,22 +52,22 @@ public class Graph {
         }
     }
 
-//    public boolean hasPath(int src, int des, HashSet<Integer> vis){
-//        if(src==des){
-//            return true;
-//        }
-//        vis.add(src);
-//        for(int nbrs:map.get(src).keySet()){
-//            if(!vis.contains(nbrs)) {
-//                boolean ans = hasPath(nbrs, des,vis);
-//                if(ans){
-//                    return ans;
-//                }
-//            }
-//        }
-//        vis.remove(src);
-//        return false;
-//    }
+    public boolean hasPath(int src, int des, HashSet<Integer> vis){
+        if(src==des){
+            return true;
+        }
+        vis.add(src);
+        for(int nbrs:map.get(src).keySet()){
+            if(!vis.contains(nbrs)) {
+                boolean ans = hasPath(nbrs, des,vis);
+                if(ans){
+                    return ans;
+                }
+            }
+        }
+        vis.remove(src);
+        return false;
+    }
 
     public void PrintAllPath(int src, int des, HashSet<Integer> vis,String ans){
         if(src==des){
