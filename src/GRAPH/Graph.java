@@ -209,12 +209,12 @@ public class Graph {
 //        g.removeVertex(4);
 //        g.display();
 //        System.out.println(g.hasPath(1,6,new HashSet<Integer>()));
-//        g.PrintAllPath(1,6,new HashSet<Integer>(),"");
+        g.PrintAllPath(1,6,new HashSet<Integer>(),"");
 //        System.out.println((g.BFS(1,6)));
 //        System.out.println((g.BFS(1,6)));
-        g.BFT();
-        System.out.println();
-        g.DFT();
+//        g.BFT();
+//        System.out.println();
+//        g.DFT();
     }
 }
 
